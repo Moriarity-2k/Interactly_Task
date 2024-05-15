@@ -19,20 +19,4 @@ function App() {
 	);
 }
 
-// function CreateNode({ setNodes, initialDigit }) {
-// 	setNodes((prev) => [
-// 		...prev,
-// 		{
-// 			id: `${initialDigit}`,
-// 			data: { label: Math.random() * 30000 },
-// 			position: {
-// 				x: initialDigit * 10,
-// 				y: initialDigit * 10,
-// 			},
-//
-// 			type: "nameChanger",
-// 		},
-// 	]);
-// }
-
 export default App;

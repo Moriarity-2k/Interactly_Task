@@ -1,14 +1,10 @@
-// import React from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
 	BaseEdge,
 	EdgeLabelRenderer,
-	// EdgeProps,
 	getBezierPath,
 	useReactFlow,
 } from "reactflow";
-
-// import "./buttonedge.css";
 
 export default function CustomEdge({
 	id,
