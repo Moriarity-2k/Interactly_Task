@@ -18,8 +18,6 @@ import CustomNode from "./CustomNode";
 const defaultViewport = { x: 0, y: 0, zoom: 1 };
 const edgeTypes = { buttonEdge: ButtonEdge };
 
-let initialDigit = 1;
-
 function ReactFlowRender() {
 	const [nodes, setNodes] = useNodesState([]);
 	const [edges, setEdges] = useEdgesState([]);
@@ -51,28 +49,32 @@ function ReactFlowRender() {
 		<>
 			<button
 				onClick={() => {
-					const id = Math.random() * 20000;
-					setNodes((prev) => [
-						...prev,
-						{
-							id: `${id}`,
-							data: {
-								label: Math.random() * 30000,
-								deleteNode: () => {
-									setNodes((x) =>
-										x.filter((obj) => obj.id !== `${id}`)
-									);
+					setNodes((prev) => {
+                        console.log(prev)
+						const id =
+							prev.length > 0 ? (+prev[prev.length - 1].id) + 1 : 1;
+						return [
+							...prev,
+							{
+								id: `${id}`,
+								data: {
+									label: Math.random() * 30000,
+									deleteNode: () => {
+										setNodes((x) =>
+											x.filter(
+												(obj) => obj.id !== `${id}`
+											)
+										);
+									},
 								},
+								position: {
+									x: prev.length > 0 ? (id-1) * 100 : 0,
+									y: 0,
+								},
+								type: "nameChanger",
 							},
-							position: {
-								x: initialDigit * 100,
-								y: 0,
-							},
-							type: "nameChanger",
-						},
-					]);
-					initialDigit++;
-					// CreateNode(setNodes, initialDigit);
+						];
+					});
 				}}
 				className="tracking-wider bg-[#023db385] rounded-md font-semibold leading-tight p-3 hover:bg-blue-700 ring-0 ring-offset-0 text-white uppercase border-none outline-none"
 			>

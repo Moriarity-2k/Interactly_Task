@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { Handle, Position } from "reactflow";
+import { createPortal } from "react-dom";
 
 export default function NodeWithNameChange(props) {
-	console.log();
 	const [name, setName] = useState("Test Node");
 	const [hover, setHover] = useState(false);
 
@@ -22,7 +22,7 @@ export default function NodeWithNameChange(props) {
 						<div className="text-black text-[6px] mt-1">{name}</div>
 						<button
 							onClick={() => {
-								console.log(props.data);
+								// console.log(props.data);
 								props.data.deleteNode();
 							}}
 							className="text-[10px] ml-2 text-red-800 font-mono hover:cursor-pointer"
