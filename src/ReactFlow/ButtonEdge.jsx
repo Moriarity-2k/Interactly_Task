@@ -49,11 +49,9 @@ export default function CustomEdge({
 						pointerEvents: "all",
 					}}
 					onMouseEnter={() => {
-						console.log("Enter");
 						setIsHovering(true);
 					}}
 					onMouseLeave={() => {
-						console.log("Leave");
 						setIsHovering(false);
 					}}
 					className="nodrag nopan edgeMain h-[20px] w-[20px]"

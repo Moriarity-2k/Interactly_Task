@@ -10,7 +10,7 @@ import ReactFlow, {
 } from "reactflow";
 
 import "reactflow/dist/style.css";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
 import ButtonEdge from "./ButtonEdge";
 import CustomNode from "./CustomNode";
@@ -35,24 +35,28 @@ function ReactFlowRender() {
 		setEdges((els) => addEdge(params, els));
 	}, []);
 
-	const onNodesChange = useCallback(
-		(changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-		[]
-	);
+	const onNodesChange = useCallback((changes) => {
+		console.log({ changes });
+		setNodes((nds) => applyNodeChanges(changes, nds));
+	}, []);
 	const onEdgesChange = useCallback((changes) => {
 		console.log({ changes });
 		// if(changes.type === 'select')
 		setEdges((eds) => applyEdgeChanges(changes, eds));
 	}, []);
 
+	useEffect(() => {
+		console.log(edges);
+	}, [edges]);
+
 	return (
 		<>
 			<button
 				onClick={() => {
 					setNodes((prev) => {
-                        console.log(prev)
+						console.log(prev);
 						const id =
-							prev.length > 0 ? (+prev[prev.length - 1].id) + 1 : 1;
+							prev.length > 0 ? +prev[prev.length - 1].id + 1 : 1;
 						return [
 							...prev,
 							{
@@ -68,7 +72,7 @@ function ReactFlowRender() {
 									},
 								},
 								position: {
-									x: prev.length > 0 ? (id-1) * 100 : 0,
+									x: prev.length > 0 ? (id - 1) * 100 : 0,
 									y: 0,
 								},
 								type: "nameChanger",
